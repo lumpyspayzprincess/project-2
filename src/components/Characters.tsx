@@ -3,13 +3,13 @@ import { Link } from "react-router-dom"
 import Character from "./Character"
 
 interface Character {
-  id: number,
-  slug: string,
-  displayName: string,
-  speciies: string,
-  sex: string,
-  quotes: Array<string>
-  sprite: string
+  name: string
+  species: string
+  house: string
+  patronus: string
+  alive: boolean
+  image: string
+  gender:string
 }
 type Characters = null | Array<Character>;(null)
 
@@ -19,7 +19,7 @@ function Characters() {
   
   React.useEffect(() => {
     async function fetchCharacters() {
-      const resp = await fetch("https://adventure-time-api.herokuapp.com/api/v1/characters")
+      const resp = await fetch("https://hp-api.herokuapp.com/api/characters")
       const charactersData = await resp.json()
       updateCharacters(charactersData)
     }
@@ -28,16 +28,16 @@ function Characters() {
   
   return (<section className="section">
     <div className="container">
-      <div className="columns is-multiline">
-        {characters?.map((character) => {
+      {/* <input type="text" placeholder="Type to search through the characters!"></input> */}
+      {/* looking to make a search bar if I can be bothered -> look at useState https://www.youtube.com/watch?v=ZoayCCDHFiI */}
+      <div className="columns is-multiline" >
+        {characters?.map((character, index) => {
           return <Character
-          key={character.id}
-          displayName={character.displayName}
-          quotes={character.quotes}
-          sprite={character.sprite}
-          slug={character.slug}
-          speciies={character.speciies}
-            />
+            key={index}
+            name={character.name}
+            image={character.image}
+            species={character.species}
+            patronus={character.patronus} house={""} alive={false} gender={""}            />
           })}
         </div>
       </div>

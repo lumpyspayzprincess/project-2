@@ -1,5 +1,8 @@
 import React from "react"
-import { Link, useParams, useLocation } from "react-router-dom"
+import { useState } from "react"
+import { render } from "react-dom"
+// import { Link, useParams, useLocation } from "react-router-dom"
+import QuestionTemplate from './QuestionTemplate'
 
 interface Question {
   category: string,
@@ -10,28 +13,63 @@ interface Question {
   type: string,
 }
 
-type ShowQuestion = null | Question
+type Questions = null | Array<Question>;(null)
 
-function Quiz() {
-  const { QuestionName } = useParams()
-  const [question, setQuestion] = React.useState<ShowQuestion>(null)
+// type exampleArray = Array<any>
 
-  React.useEffect(() => {
+const Quiz = () => {
+  const [questions, setQuestions] = useState<Questions>(null)
+
+    React.useEffect(() => {
     async function fetchQuestion() {
       const resp = await fetch("https://the-trivia-api.com/api/questions?limit=15&region=GB&difficulty=medium")
       const questionData = await resp.json()
-      setQuestion(questionData)
+      setQuestions(questionData)
+      console.log(questionData)
     }
     fetchQuestion()
-  }, [QuestionName])
-  
-  return (<div className="column is-one-quarter-desktop is-one-third-tablet">
-    <h2>{question}</h2>
-    <button>{incorrectAnswers[0]}</button>
-    <button>{incorrectAnswers[2]}</button>
-    <button>{incorrectAnswers[1]}</button>
-    <button>{correctAnswer}</button>
-    </div>)
-}
+  }, [])
+  // supposed to add something here so line 28 doesn't repeat but forgot
+
+  return (<section className="section">
+    <div className="container">
+      <div className="columns is-multiline">
+        {questions?.map((question, index) => {
+          return <QuestionTemplate
+            category={question.category}
+            id={question.id}
+            question={question.question}
+            correctAnswer={question.correctAnswer}
+            incorrectAnswers={question.incorrectAnswers}
+            // isShown={index === } should equal selected index,is only true for one card at a time, so one card should be shown
+            />
+          })
+          }
+        </div>
+    </div>
+  </section>
+)}
+
+// will use https://bulma.io/documentation/components/card/ to create card
+// ref video for hovering https://www.youtube.com/watch?v=4KxHcbQ8GYQ
+
 
 export default Quiz
+
+// interface Question {
+//   category: string,
+//   id: string,
+//   correctAnswer: string,
+//   incorrectAnswers:  Array<string>,
+//   question: string,
+//   type: string,
+// }
+
+// type ShowQuestion = null | Question
+// const questionsShown = Array<ShowQuestion>
+
+
+// // const exampleArrayT: any = [
+// //   {1: "What's my name?", "Jane": }
+// //   {2, "When's my birthday?", "1st December"}
+// // }]

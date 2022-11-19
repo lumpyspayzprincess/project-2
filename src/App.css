@@ -32,9 +32,25 @@
   }
 }
 
-.card {
+/* .card {
+  display: none;
+} */
+
+
+/* .show {
   padding: 2em;
+  background-color: beige;
+  border: solid 1px;
+  margin: 100px;
 }
+
+#correct {
+  background-color: green;
+}
+
+#incorrect {
+  background-color: red;
+} */
 
 .read-the-docs {
   color: #888;

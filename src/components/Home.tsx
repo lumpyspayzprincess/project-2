@@ -8,7 +8,7 @@ function Home() {
       <div>
         <div>
           <p>
-            Adventure Time Personality Quiz
+            Harry Potter Personality Quiz
           </p>
           <Link to={"/quiz"} className="button is-large">
             Begin!

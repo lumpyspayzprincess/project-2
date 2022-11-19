@@ -6,6 +6,7 @@ import About from "./components/About"
 import Characters from "./components/Characters"
 import './App.css'
 import Character from "./components/Character"
+import Quiz from "./components/Quiz"
 
 // interface IStatus { statusSeverityDescription: string }
 // interface ILine { id: string, name: string, lineStatuses: Array<IStatus> }
@@ -13,15 +14,14 @@ import Character from "./components/Character"
 
 function App() {
 
-
   return (
     <Router>
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/at-characters" element={<Characters />} />
-    
+      <Route path="/hp-characters" element={<Characters />} />
+      <Route path="/quiz" element={<Quiz />} />
     </Routes>
   </Router>
   )
