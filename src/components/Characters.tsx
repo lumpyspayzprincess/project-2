@@ -1,6 +1,8 @@
 import React from "react"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import Character from "./Character"
+
+type Characters = Array<Character>;({})
 
 interface Character {
   name: string
@@ -10,11 +12,11 @@ interface Character {
   alive: boolean
   image: string
   gender:string
+  prevState: null
 }
-type Characters = null | Array<Character>;(null)
 
 function Characters() {
-  const [characters, updateCharacters] = React.useState<Characters>(null) // all characters that are loaded on the pager initially
+  const [characters, updateCharacters] = React.useState<Characters>([]) // all characters that are loaded on the pager initially
   // const [allChars, updateAllChars] = React.useState<Characters>(null) // characters that are filtered
   
   React.useEffect(() => {
@@ -28,7 +30,7 @@ function Characters() {
   
   return (<section className="section">
     <div className="container">
-      <input type="text" placeholder="Type to search through the characters!" onInput={filterCharacters}></input>
+      <input type="text" placeholder="Type to search through the characters!" onChange={filterCharacters}></input>
       <div className="columns is-multiline" >
         {characters?.map((character, index) => {
           return <Character
