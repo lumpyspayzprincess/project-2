@@ -5,29 +5,25 @@ function Navbar() {
   return (
     <>
       <header>
-        <nav className="navbar is-dark">
-          <div className="container">
-            <div className="navbar-brand">
-              <Link to="/" className="navbar-item">
+        <nav className="navbar">
+              <Link to="/" className="nav-links">
                 Home
               </Link>
-              <Link to="/about" className="navbar-item">
+              <Link to="/about" className="nav-links">
                 About the Quiz
               </Link>
-              <Link to="/hp-characters" className="navbar-item">
+              <Link to="/hp-characters" className="nav-links">
                 All the characters
               </Link>
-              <a href="https://the-trivia-api.com/docs/" target="_blank">
+              <a href="https://the-trivia-api.com/docs/" target="_blank" className="nav-links">
                 Quiz API
               </a>
-              <a href="https://hp-api.herokuapp.com/" target="_blank">
+              <a href="https://hp-api.herokuapp.com/" target="_blank" className="nav-links">
                 Harry Potter API
               </a>
-              <a href="https://github.com/lumpyspayzprincess" target="_blank">
+              <a href="https://github.com/lumpyspayzprincess" target="_blank" className="nav-links">
                 My GitHub Page
               </a>
-            </div>
-          </div>
         </nav>
       </header>
     </>

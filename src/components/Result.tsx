@@ -1,33 +1,28 @@
-// import { Link } from "react-router-dom"
+import React from "react"
+import { Link } from "react-router-dom"
+import Character from "./Character"
 
-// interface CharacterProps {
-//   id: number,
-//   slug: string,
-//   displayName: string,
-//   speciies: string,
-//   sex: string,
-//   quotes: Array<string>
-//   sprite: string
-// }
+interface Character {
+  name: string
+  species: string
+  house: string
+  patronus: string
+  alive: boolean
+  image: string
+  gender:string
+}
+type Characters = null | Array<Character>;(null)
 
-// function Result({ id, displayName, quotes, sprite }: CharacterProps) {
-//   return (<div className="column is-one-quarter-desktop is-one-third-tablet">
-//       <Link to={`/result/${displayName}`}>
-//       <div className="card" key={id}>
-//         <div className="card-header">
-//           <div className="card-header-title">You are {displayName}!</div>
-//         </div>
-//         <div className="card-image">
-//           <figure className="image image-is-1by1">
-//             <img src={sprite} alt={displayName} />
-//           </figure>
-//         </div>
-//         <div className="card-content">
-//           <h5>Here's one of their quotes:"{quotes[0]}"</h5>
-//         </div>
-//       </div>
-//     </Link>
-//   </div>)
-// }
+const hp = characters?.filter(
+  character => (`${character.name}`
+  .toLowerCase()
+  .includes("harry potter")
+  )
+)
+console.log(hp)
+updateCharacters(hp)
 
-// export default Result
+function Result() {
+
+}
+export default Result

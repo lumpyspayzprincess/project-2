@@ -1,7 +1,7 @@
 import React from "react"
-import { useState } from "react"
-import { render } from "react-dom"
-// import { Link, useParams, useLocation } from "react-router-dom"
+import { useState, useEffect, useRef } from "react"
+// import ReactDOM from "react-dom";
+// import { render } from "react-dom"
 import QuestionTemplate from './QuestionTemplate'
 
 interface Question {
@@ -11,50 +11,77 @@ interface Question {
   incorrectAnswers:  Array<string>,
   question: string,
   type: string,
+  index: number
 }
 
 type Questions = null | Array<Question>;(null)
 
-// type exampleArray = Array<any>
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<Questions>(null)
+  const [index, setIndex] = useState(0)
+  // let { score } = useParams()
+  
+  // console.log(score)
 
     React.useEffect(() => {
     async function fetchQuestion() {
       const resp = await fetch("https://the-trivia-api.com/api/questions?limit=15&region=GB&difficulty=medium")
       const questionData = await resp.json()
       setQuestions(questionData)
-      console.log(questionData)
     }
     fetchQuestion()
   }, [])
   // supposed to add something here so line 28 doesn't repeat but forgot
 
+  let selectedIndex = 0
+
+  var whatsTheAnswer = useRef(null)
+  
+  function moveTheCards(){
+    console.log(whatsTheAnswer.current)
+  }
+
+
+  // moveTheCards()
+
   return (<section className="section">
-    <div className="container">
-      <div className="columns is-multiline">
+    <div ref={whatsTheAnswer} className="carousel">
         {questions?.map((question, index) => {
-          return <QuestionTemplate
+          let className = ""
+          // if (index === selectedIndex) {
+          //   className = "card"
+          // } else if (index !== selectedIndex) {
+          //   className = "hidden"
+          // }
+// explain this bit as it's an interesting almost finished piece of work
+          return (
+            <div className={className} key={index}>
+              <QuestionTemplate
             category={question.category}
             id={question.id}
             question={question.question}
             correctAnswer={question.correctAnswer}
             incorrectAnswers={question.incorrectAnswers}
-            // isShown={index === } should equal selected index,is only true for one card at a time, so one card should be shown
+            index={question.index} type={""}
             />
+            </div>)
           })
           }
-        </div>
     </div>
   </section>
-)}
+)
+
+}
+
 
 // will use https://bulma.io/documentation/components/card/ to create card
 // ref video for hovering https://www.youtube.com/watch?v=4KxHcbQ8GYQ
 
 
 export default Quiz
+
+// type exampleArray = Array<any>
 
 // interface Question {
 //   category: string,

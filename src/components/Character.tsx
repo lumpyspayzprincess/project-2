@@ -10,13 +10,13 @@ interface CharacterProps {
 }
 
 function Character({ name, species, image, patronus }: CharacterProps) {
-  return (<div className="column is-one-quarter-desktop is-one-third-tablet">
-      <div className="card" key={`${name}`}>
-        <div className="card-header">
-          <div className="card-header-title">{name}!</div>
+  return (<div className="columns">
+      <div className="" key={`${name}`}>
+        <div>
+          <div className="">{name}!</div>
         </div>
-        <div className="card-image">
-          <figure className="image image-is-1by1">
+        <div>
+          <figure className="image is-128x128">
             <img src={image !== "" ? image : "https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"} alt={name} />
           </figure>
         </div>

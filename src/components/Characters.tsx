@@ -14,8 +14,8 @@ interface Character {
 type Characters = null | Array<Character>;(null)
 
 function Characters() {
-  const [characters, updateCharacters] = React.useState<Characters>(null)
-
+  const [characters, updateCharacters] = React.useState<Characters>(null) // all characters that are loaded on the pager initially
+  // const [allChars, updateAllChars] = React.useState<Characters>(null) // characters that are filtered
   
   React.useEffect(() => {
     async function fetchCharacters() {
@@ -28,8 +28,7 @@ function Characters() {
   
   return (<section className="section">
     <div className="container">
-      {/* <input type="text" placeholder="Type to search through the characters!"></input> */}
-      {/* looking to make a search bar if I can be bothered -> look at useState https://www.youtube.com/watch?v=ZoayCCDHFiI */}
+      <input type="text" placeholder="Type to search through the characters!" onInput={filterCharacters}></input>
       <div className="columns is-multiline" >
         {characters?.map((character, index) => {
           return <Character
@@ -42,6 +41,30 @@ function Characters() {
         </div>
       </div>
     </section>
-  )}
+  )
+
+  function filterCharacters(onInput: { target: { value: string } }) {
+    const searchValue = onInput.target.value.toLowerCase()
+    // console.log(searchValue)
+    const filteredChars = characters?.filter(
+      character => (`${character.name}`
+      .toLowerCase()
+      .includes(searchValue)
+      )
+    )
+    // console.log(filteredChars)
+    updateCharacters(filteredChars)
+    // tried to clear after but couldn't, so refresh page to get around id
+    function refreshResults() {
+      if (searchValue !== "")
+      setTimeout(() => {
+        document.location.reload();
+      }, 7000);
+    }
+
+    refreshResults()
+    // updateAllChars(filteredChars)
+  }
+}
 
 export default Characters
