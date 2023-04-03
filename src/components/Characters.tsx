@@ -21,7 +21,8 @@ function Characters() {
   
   React.useEffect(() => {
     async function fetchCharacters() {
-      const resp = await fetch("https://hp-api.herokuapp.com/api/characters")
+      // const resp = await fetch("https://hp-api.herokuapp.com/api/characters")
+      const resp = await fetch("https://rickandmortyapi.com/api/character")
       const charactersData = await resp.json()
       updateCharacters(charactersData)
     }
@@ -38,7 +39,8 @@ function Characters() {
             name={character.name}
             image={character.image}
             species={character.species}
-            patronus={character.patronus} house={""} alive={false} gender={""}            />
+            // patronus={character.patronus} house={""} alive={false} gender={""} 
+            />
           })}
         </div>
       </div>

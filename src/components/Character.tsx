@@ -1,15 +1,16 @@
 interface CharacterProps {
     name: string
     species: string
-    house: string
-    patronus: string
-    alive: boolean
+    // house: string
+    // patronus: string
+    // alive: boolean
     image: string
     gender:string
   
 }
 
-function Character({ name, species, image, patronus }: CharacterProps) {
+// changed Character so it overlapped r&m. Removed "Their patronus is {patronus !== "" ? patronus : "unknown"}." from h5
+function Character({ name, species, image }: CharacterProps) {
   return (<div className="columns">
       <div className="" key={`${name}`}>
         <div>
@@ -21,7 +22,7 @@ function Character({ name, species, image, patronus }: CharacterProps) {
           </figure>
         </div>
         <div className="card-content">
-          <h5>{name} is a {species}. Their patronus is {patronus !== "" ? patronus : "unknown"}.</h5>
+          <h5>{name} is a {species}.</h5>
         </div>
       </div>
   </div>)
